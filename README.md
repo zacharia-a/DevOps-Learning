@@ -70,6 +70,8 @@ www → EC2 Public IP
 
 EC2 Instance
 
+![EC2 Instance > Custom Domain](screenshots/EC2 Instance > Custom Domain .png)
+
 Security Groups
 
 DNS Records
