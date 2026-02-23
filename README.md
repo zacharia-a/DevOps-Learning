@@ -89,19 +89,22 @@ NGINX was installed and configured as the web server.
 
 ### Server Setup Commands
 
-```bash
 sudo apt update
 sudo apt install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
+
+---
 
 Verify NGINX Status
 sudo systemctl status nginx
 
 This ensured the web server was running properly.
 
-📡 Networking Concepts Demonstrated
+---
 
+
+📡 Networking Concepts Demonstrated
 This project demonstrates understanding of several core networking principles:
 
 Domain Name System (DNS) resolution
@@ -115,7 +118,6 @@ HTTP protocol communication
 Client-server request lifecycle
 
 ⏳ DNS Propagation Observation
-
 After configuring DNS records, the website did not immediately become accessible.
 
 This was caused by DNS propagation delay across global DNS servers.
@@ -142,8 +144,7 @@ Network security using firewall rules
 
 End-to-end request-response flow
 
-⚠️ Challenges Encountered
-DNS Propagation Delay
+⚠️ Challenges Encountered – DNS Propagation Delay
 
 Issue: Website was not immediately accessible after DNS configuration.
 
@@ -178,5 +179,12 @@ Configure load balancing
 Introduce monitoring and logging
 
 Containerise the application using Docker
+
 Website content is returned to the browser
+
+
+
+
+
+
 
