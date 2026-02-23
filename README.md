@@ -88,16 +88,19 @@ These rules allowed public web access while maintaining secure administrative ac
 NGINX was installed and configured as the web server.
 
 ### Server Setup Commands
-
+```bash
 sudo apt update
 sudo apt install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
+```
 
 ---
 
 Verify NGINX Status
+```bash
 sudo systemctl status nginx
+```
 
 This ensured the web server was running properly.
 
@@ -117,6 +120,8 @@ HTTP protocol communication
 
 Client-server request lifecycle
 
+---
+
 ⏳ DNS Propagation Observation
 After configuring DNS records, the website did not immediately become accessible.
 
@@ -132,6 +137,8 @@ Waited for DNS propagation to complete.
 
 After propagation, the domain successfully resolved to the EC2 instance.
 
+---
+
 🧠 Key Learning Outcomes
 
 Practical experience with cloud infrastructure deployment
@@ -143,6 +150,8 @@ Server configuration and web hosting fundamentals
 Network security using firewall rules
 
 End-to-end request-response flow
+
+---
 
 ⚠️ Challenges Encountered – DNS Propagation Delay
 
@@ -158,6 +167,8 @@ Checked EC2 public IP accessibility
 
 Waited for propagation completion
 
+---
+
 📸 Evidence Screenshots Included
 
 Web application running on custom domain
@@ -167,6 +178,8 @@ NGINX server status verification
 EC2 instance dashboard
 
 DNS configuration records
+
+---
 
 🚀 Future Improvements
 
