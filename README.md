@@ -1,109 +1,182 @@
-Networking Assignment – Domain, EC2 & DNS
+# Networking Assignment – Domain, EC2 & DNS Deployment
 
-Successfully completed a hands-on networking assignment by purchasing my own domain zachahmed.co.uk, deploying an NGINX web server on AWS EC2, and configuring DNS** to make the website accessible via my custom domain.
+## 📌 Project Overview
 
-This project demonstrates practical application of core networking concepts including DNS resolution, IP addressing, routing, firewall configuration, and HTTP protocols.
+This project demonstrates practical networking and cloud deployment skills by building a live website hosted on AWS infrastructure.
 
----
+The assignment involved purchasing a custom domain, deploying a web server on an EC2 instance, and configuring DNS records to make the website publicly accessible.
 
-Project Outcome
-Live website: http://zachahmed.co.uk
-Web server: NGINX on AWS EC2  
-DNS provider: GoDaddy
+The project showcases real-world implementation of networking fundamentals such as DNS resolution, IP routing, firewall configuration, and HTTP web server hosting.
 
----
-
-Architecture (End-to-End Flow)
-User Browser  
-→ DNS Resolution (GoDaddy)  
-→ EC2 Public IP  
-→ NGINX (Port 80)  
-→ Web Page Response
+### 🌍 Live Website
+- http://zachahmed.co.uk
 
 ---
 
-Domain Registration (GoDaddy)
-- Purchased zachahmed.co.uk via GoDaddy Registrar
-- Managed DNS records using GoDaddy DNS dashboard
+## 🏗 System Architecture (End-to-End Request Flow)
+
+The website follows this request lifecycle:
+User Browser
+↓
+DNS Resolution (GoDaddy DNS Servers)
+↓
+Domain mapped to EC2 Public IP Address
+↓
+AWS EC2 Instance receives request
+↓
+NGINX Web Server listens on Port 80
+↓
+Website content is returned to the browser
+
+
+This architecture demonstrates how web traffic travels across network layers before reaching the hosted application.
 
 ---
 
-AWS EC2 Instance Setup
-- Launched an Ubuntu EC2 instance
-- Instance type: t2.micro
-- Created and downloaded a new key pair for SSH access
-- Instance assigned both:
-  - Public IP (internet access)
-  - Private IP (internal AWS networking)
+## 🌐 Domain Registration & DNS Management
+
+### Domain Purchase
+
+- Purchased custom domain: `zachahmed.co.uk`
+- Domain registration was completed through a domain registrar platform.
+
+### DNS Configuration
+
+Configured DNS A records to map the domain to the EC2 instance public IP.
+
+The following DNS records were created:
+
+- Root domain (`@`) → EC2 Public IP address
+- `www` subdomain → EC2 Public IP address
+
+This ensured both domain versions correctly resolved to the hosted server.
 
 ---
 
-Security Group Configuration
-Configured an EC2 security group with the following inbound rules:
+## ☁️ AWS EC2 Instance Setup
 
-- Port 80 (HTTP) → Open to `0.0.0.0/0` (public web access)
-- Port 22 (SSH) → For secure remote access
+### Instance Configuration
+
+- Ubuntu-based EC2 virtual machine
+- Instance type: `t2.micro`
+- Generated SSH key pair for secure server access
+
+The instance was assigned:
+
+- Public IP address for internet accessibility
+- Private IP address for internal AWS networking communication
 
 ---
 
-NGINX Installation on Ubuntu
-Connected to the EC2 instance via SSH and installed NGINX:
+## 🔐 Security Group Configuration
 
+Security groups were configured as virtual firewall rules to control network traffic.
 
-ssh -i "my-key.pem" ubuntu@<ec2-public-ip>
+### Inbound Rules
+
+| Protocol | Port | Purpose |
+|---|---|---|
+| TCP | 80 | HTTP web traffic |
+| TCP | 22 | SSH remote server access |
+
+These rules allowed public web access while maintaining secure administrative access.
+
+---
+
+## 🖥 Web Server Deployment (NGINX)
+
+NGINX was installed and configured as the web server.
+
+### Server Setup Commands
+
+```bash
 sudo apt update
 sudo apt install nginx -y
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
----
-
-DNS Configuration (GoDaddy)
-
-Created the following A records in GoDaddy:
-
-@ (root domain) → EC2 Public IP
-
-www → EC2 Public IP
-
----
-
-EC2 Instance
-
-Security Groups
-
-DNS Records
-
-NGINX Status
-
-Live Website
-
----
-
-What I Learned
-DNS in Practice
-
-I gained hands-on experience with DNS resolution, understanding how a domain name like zachahmed.co.uk is translated into an IP address and routed to the correct server hosting the website.
-
-Servers and IP Addressing
-
-I learned that an EC2 instance has both public and private IP addresses. The public IP enables access from the internet, while the private IP is used for internal communication within AWS.
-
-Security and Traffic Management
-
-AWS Security Groups function as instance-level firewalls. Configuring inbound HTTP traffic on port 80 ensured the web server was accessible publicly while maintaining controlled access.
-
-End-to-End Request Flow
-
-Observing the complete request lifecycle — browser → DNS → EC2 → NGINX → response — helped me understand how network components interact in a real-world environment.
-
-Challenge Encountered
-
-Issue: The website initially did not load after configuring DNS.
-Cause: DNS propagation delay.
-Solution: Verified that NGINX was running correctly via the EC2 public IP, then waited for DNS propagation. After a few minutes, the domain successfully loaded the website.
-
-
-
-After DNS propagation, the domain successfully resolved to the EC2 instance.x
+Verify NGINX Status
 sudo systemctl status nginx
+
+This ensured the web server was running properly.
+
+📡 Networking Concepts Demonstrated
+
+This project demonstrates understanding of several core networking principles:
+
+Domain Name System (DNS) resolution
+
+IP addressing and routing
+
+Firewall security configuration
+
+HTTP protocol communication
+
+Client-server request lifecycle
+
+⏳ DNS Propagation Observation
+
+After configuring DNS records, the website did not immediately become accessible.
+
+This was caused by DNS propagation delay across global DNS servers.
+
+Troubleshooting Steps
+
+Verified NGINX service was running using EC2 public IP.
+
+Confirmed security group port 80 was open.
+
+Waited for DNS propagation to complete.
+
+After propagation, the domain successfully resolved to the EC2 instance.
+
+🧠 Key Learning Outcomes
+
+Practical experience with cloud infrastructure deployment
+
+Understanding how DNS translates domain names into IP addresses
+
+Server configuration and web hosting fundamentals
+
+Network security using firewall rules
+
+End-to-end request-response flow
+
+⚠️ Challenges Encountered
+DNS Propagation Delay
+
+Issue: Website was not immediately accessible after DNS configuration.
+
+Cause: Global DNS record update latency.
+
+Solution:
+
+Verified NGINX service status
+
+Checked EC2 public IP accessibility
+
+Waited for propagation completion
+
+📸 Evidence Screenshots Included
+
+Web application running on custom domain
+
+NGINX server status verification
+
+EC2 instance dashboard
+
+DNS configuration records
+
+🚀 Future Improvements
+
+Implement HTTPS using SSL/TLS certificates
+
+Add automated deployment pipeline
+
+Configure load balancing
+
+Introduce monitoring and logging
+
+Containerise the application using Docker
+Website content is returned to the browser
+
