@@ -57,4 +57,4 @@ Then run the following command inside the project directory:
 
 ```bash
 docker compose up --build
-- Understanding container networking
+
